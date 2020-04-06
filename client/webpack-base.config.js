@@ -1,27 +1,26 @@
 const _ = require('lodash');
+const path = require('path');
 
 const sharedConfigs = {
   context: __dirname,
   entry: {
-    app: './src/index.js'
+    app: './src/index.tsx'
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-react', '@babel/preset-env']
-          }
-        }
-      },
-      {
-        test: require.resolve('webrtc-adapter'),
-        use: 'expose-loader'
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
       }
     ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
   }
 };
 

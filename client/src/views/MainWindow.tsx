@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { Configuration } from '../models/Configuration';
 
-function MainWindow({ startCall, clientId }) {
+interface Props {
+  clientId: string;
+  startCall(start: boolean, friend: string, config: Configuration): void; 
+}
+
+const MainWindow: React.FunctionComponent<Props> = ({ startCall, clientId }) => {
   const [friendID, setFriendID] = useState(null);
-
+  
   /**
    * Start the call with or without video
    * @param {Boolean} video
@@ -12,6 +17,7 @@ function MainWindow({ startCall, clientId }) {
     const config = { audio: true, video };
     return () => friendID && startCall(true, friendID, config);
   };
+
 
   return (
     <div className="container main-window">
@@ -40,21 +46,16 @@ function MainWindow({ startCall, clientId }) {
             type="button"
             className="btn-action fa fa-video-camera"
             onClick={callWithVideo(true)}
-          />
+          >Cam</button>
           <button
             type="button"
             className="btn-action fa fa-phone"
             onClick={callWithVideo(false)}
-          />
+          >Fon</button>
         </div>
       </div>
     </div>
   );
 }
-
-MainWindow.propTypes = {
-  clientId: PropTypes.string.isRequired,
-  startCall: PropTypes.func.isRequired
-};
 
 export default MainWindow;

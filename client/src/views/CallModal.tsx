@@ -1,9 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Configuration } from '../models/Configuration';
 
+interface Props {
+  status: string;
+  callFrom: string;
+  startCall(state: boolean, callFrom: string, config: Configuration): void;
+  rejectCall(): void;
+  toggleCam(): void;
+}
 
-function CallModal({ status, callFrom, startCall, rejectCall }) {
+const CallModal: React.FunctionComponent<Props> = ({
+  status,
+  callFrom,
+  startCall,
+  rejectCall,
+  toggleCam
+}) => {
   const acceptWithVideo = (video) => {
     const config = { audio: true, video };
     return () => startCall(false, callFrom, config);
@@ -29,15 +43,13 @@ function CallModal({ status, callFrom, startCall, rejectCall }) {
         className="btn-action hangup fa fa-phone"
         onClick={rejectCall}
       />
+      <button
+        type="button"
+        className="btn-action hangup fa fa-phone"
+        onClick={toggleCam}
+      />
     </div>
   );
 }
-
-CallModal.propTypes = {
-  status: PropTypes.string.isRequired,
-  callFrom: PropTypes.string.isRequired,
-  startCall: PropTypes.func.isRequired,
-  rejectCall: PropTypes.func.isRequired
-};
 
 export default CallModal;

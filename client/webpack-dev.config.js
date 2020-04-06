@@ -6,14 +6,10 @@ const addBaseConfig = require('./webpack-base.config');
 const configs = addBaseConfig({
   mode: 'development',
   output: {
-    filename: 'js/[name].js'
+    filename: 'src/[name].js'
   },
   module: {
     rules: [
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
-      },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         use: [
@@ -31,7 +27,7 @@ const configs = addBaseConfig({
   plugins: [
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title: 'React VideoCall - Minh Son Nguyen',
+      title: 'React VideoCall - Marouen Mhiri',
       filename: 'index.html',
       template: 'src/html/index.html'
     })

@@ -1,10 +1,14 @@
 import MediaDevice from './MediaDevice';
 import Emitter from './Emitter';
 import socket from './socket';
+import { Configuration } from '../models/Configuration';
 
 const PC_CONFIG = { iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }] };
 
 class PeerConnection extends Emitter {
+  pc: RTCPeerConnection;
+  friendID: any;
+  mediaDevice: MediaDevice;
   /**
      * Create a PeerConnection.
      * @param {String} friendID - ID of the friend you want to call.
@@ -27,7 +31,7 @@ class PeerConnection extends Emitter {
    * @param {Boolean} isCaller
    * @param {Object} config - configuration for the call {audio: boolean, video: boolean}
    */
-  start(isCaller, config) {
+  start(isCaller, config: Configuration) {
     this.mediaDevice
       .on('stream', (stream) => {
         stream.getTracks().forEach((track) => {
@@ -53,7 +57,7 @@ class PeerConnection extends Emitter {
     this.mediaDevice.stop();
     this.pc.close();
     this.pc = null;
-    this.off();
+    this.off(null, null);
     return this;
   }
 

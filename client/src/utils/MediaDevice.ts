@@ -1,26 +1,24 @@
-import _ from 'lodash';
 import Emitter from './Emitter';
+import { Configuration } from '../models/Configuration';
 
 /**
  * Manage all media devices
  */
 class MediaDevice extends Emitter {
+  stream: MediaStream;
   /**
    * Start media devices and send stream
    */
-  start() {
+
+  start(config: Configuration) {
     const constraints = {
       video: {
-        facingMode: 'user',
+        facingMode: 'envirement' || 'user',
         height: { min: 360, ideal: 720, max: 1080 }
       },
       audio: true
     };
 
-    // Older browsers might not implement mediaDevices at all, so we set an empty object first
-    if (navigator.mediaDevices === undefined) {
-      navigator.mediaDevices = {};
-    }
 
     navigator.mediaDevices.getUserMedia(constraints)
       .then((strm) => {
@@ -34,7 +32,11 @@ class MediaDevice extends Emitter {
         }
       });
     return this;
-  }
+  };
+
+  // emit(arg0: string, strm: MediaStream) {
+  //   throw new Error("Method not implemented.");
+  // }
 
   /**
    * Turn on/off a device
@@ -46,7 +48,7 @@ class MediaDevice extends Emitter {
     if (this.stream) {
       this.stream[`get${type}Tracks`]().forEach((track) => {
         const state = len === 2 ? on : !track.enabled;
-        _.set(track, 'enabled', state);
+        track = {...track, enabled: state};
       });
     }
     return this;

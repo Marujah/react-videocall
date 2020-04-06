@@ -12,11 +12,10 @@ const configs = addBaseConfig({
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
+          'css-loader'
         ]
       },
       {
