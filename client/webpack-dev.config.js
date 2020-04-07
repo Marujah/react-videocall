@@ -11,6 +11,12 @@ const configs = addBaseConfig({
   module: {
     rules: [
       {
+        test: /\.css$/,
+        use: [
+          'css-loader'
+        ]
+      },
+      {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         use: [
           {

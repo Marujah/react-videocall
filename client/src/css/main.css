@@ -1,3 +1,15 @@
 body {
-    background-color: gray;
+    background-color: #000;
+    color: #fff;
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: none;
+    font-size: 1rem;
+}
+
+.hidden {
+    display: none;
 }

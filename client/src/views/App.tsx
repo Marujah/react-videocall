@@ -11,7 +11,7 @@ const App: React.FunctionComponent<Props> = () => {
   
   const [clientId, setClientId] = useState('');
   const [callWindow, setCallWindow] = useState('');
-  const [callModal, setCallModal] = useState('');
+  const [callModal, setCallModal] = useState('hidden');
   const [callFrom, setCallFrom] = useState('');
   const [localSrc, setLocalSrc] = useState(null);
   const [peerSrc, setPeerSrc] = useState(null);
@@ -24,7 +24,7 @@ const App: React.FunctionComponent<Props> = () => {
         setClientId(clientId);
       })
       .on('request', ({ from: callFrom }) => {
-        setCallModal('active');
+        setCallModal('block');
         setCallFrom(callFrom);
       })
       .on('call', (data) => {
@@ -41,8 +41,7 @@ const App: React.FunctionComponent<Props> = () => {
     this.config = config;
     this.pc = new PeerConnection(friendID)
       .on('localStream', (src) => {
-        const newState = { callWindow: 'active', localSrc: src };
-        if (!isCaller) setCallModal('');
+        if (!isCaller) setCallModal('hidden');
         setCallWindow('active');
         setLocalSrc(src);        
       })
@@ -53,7 +52,7 @@ const App: React.FunctionComponent<Props> = () => {
   const rejectCall = () => {
     const { callFrom } = this.state;
     socket.emit('end', { to: callFrom });
-    setCallModal('');
+    setCallModal('hidden');
   }
 
   const endCall = (isStarter) => {
@@ -63,7 +62,7 @@ const App: React.FunctionComponent<Props> = () => {
     this.pc = {};
     this.config = null;
     setCallWindow('');
-    setCallModal('');
+    setCallModal('hidden');
     setLocalSrc(null);
     setPeerSrc(null);
   }
