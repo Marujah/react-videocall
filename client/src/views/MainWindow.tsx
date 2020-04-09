@@ -20,7 +20,7 @@ const MainWindow: React.FunctionComponent<Props> = ({ startCall, clientId }) => 
 
 
   return (
-    <div className="container main-window">
+    <div className="container flex flex-col items-center justify-center">
       <div>
         <h3>
           Hi, your ID is
@@ -41,7 +41,7 @@ const MainWindow: React.FunctionComponent<Props> = ({ startCall, clientId }) => 
           placeholder="Your friend ID"
           onChange={(event) => setFriendID(event.target.value)}
         />
-        <div>
+        <div className='flex items-center justify-center'>
           <button
             type="button"
             className="btn-action fa fa-video-camera"
