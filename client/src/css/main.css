@@ -29,8 +29,9 @@ body {
     color: #fff;
 }
 
+/* -------- global styles ---------- */
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 input {
@@ -56,6 +57,66 @@ input {
 .flex-wrap {
     flex-wrap: wrap;
 }
+
+.bg-none {
+    background: none;
+}
+
+.border-none {
+    border: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.m-4 {
+    margin: 1.25rem;
+}
+.mt-4 {
+    margin-top: 1.25rem;
+}
+.ml-4 {
+    margin-left: 1.25rem;
+}
+.mr-4 {
+    margin-right: 1.25rem;
+}
+.mb-4 {
+    margin-bottom: 1.25rem;
+}
+
+.p-4 {
+    padding: 1.25rem;
+}
+
+.round-icon {
+    padding: .75rem;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+.round-icon:hover {
+    background: rgba(255,255,255, 0.3);
+}
+.icon-on {
+    background: rgb(127, 186, 0);
+}
+.icon-off {
+    background: rgb(232, 17, 35);
+}
+.icon-on, .icon-off {
+    border: none;
+    transition: all 0.5s ease-in-out 0s;
+}
+.icon-on:hover {
+    background: rgba(127,186,0, 0.8);
+}
+
+.icon-off:hover {
+    background: rgba(232, 17, 35, 0.8);
+}
+/* -------- global styles ---------- */
+
 
 .container {
     width: 100%;

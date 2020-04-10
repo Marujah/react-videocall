@@ -5,50 +5,50 @@ const TerserPlugin = require('terser-webpack-plugin');
 const addBaseConfig = require('./webpack-base.config');
 
 const configs = addBaseConfig({
-  mode: 'production',
-  output: {
-    filename: 'js/[name].min.js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader'
-        ]
-      },
-      {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'assets',
-              publicPath: '/dist/assets'
+    mode: 'production',
+    output: {
+        filename: 'js/[name].min.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'assets',
+                            publicPath: '/dist/assets'
+                        }
+                    }
+                ]
             }
-          }
         ]
-      }
-    ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({ filename: 'css/[name].min.css' }),
-    new HtmlWebpackPlugin({
-      title: 'React VideoCall - Marouen Mhiri',
-      filename: path.join(__dirname, 'index.html'),
-      template: 'src/html/index.html'
-    })
-  ],
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        parallel: true,
-        terserOptions: { ecma: 6 }
-      })
-    ]
-  }
+    },
+    plugins: [
+        new MiniCssExtractPlugin({ filename: 'css/[name].min.css' }),
+        new HtmlWebpackPlugin({
+            title: 'React VideoCall - Marouen Mhiri',
+            filename: path.join(__dirname, 'index.html'),
+            template: 'src/html/index.html'
+        })
+    ],
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                parallel: true,
+                terserOptions: { ecma: 6 }
+            })
+        ]
+    }
 });
 
 module.exports = configs;
