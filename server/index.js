@@ -1,16 +1,18 @@
-const https = require('https');
+// const https = require('https');
+const http = require('http');
 const express = require('express');
-const enforce = require('express-sslify');
-const fs = require('fs');
+// const enforce = require('express-sslify');
+// const fs = require('fs');
 const { Client } = require('pg');
 const config = require('../config');
 const socket = require('./lib/socket');
 
-const key = fs.readFileSync('./key.pem');
-const cert = fs.readFileSync('./cert.pem');
+// const key = fs.readFileSync('./key.pem');
+// const cert = fs.readFileSync('./cert.pem');
 
 const app = express();
-const server = https.createServer({ key, cert }, app);
+// const server = https.createServer({ key, cert }, app);
+const server = http.createServer(app);
 
 
 const client = new Client({
@@ -33,7 +35,7 @@ const getUsers = (request, response) => {
   });
 };
 
-app.use(enforce.HTTPS());
+// app.use(enforce.HTTPS());
 
 app.use('/', express.static(`${__dirname}/../client`));
 
