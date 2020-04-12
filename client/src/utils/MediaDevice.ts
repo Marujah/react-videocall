@@ -44,11 +44,10 @@ class MediaDevice extends Emitter {
      * @param {Boolean} [on] - State of the device
      */
     toggle(type, on) {
-        const len = arguments.length;
         if (this.stream) {
             this.stream[`get${type}Tracks`]().forEach((track) => {
-                const state = len === 2 ? on : !track.enabled;
-                track = { ...track, enabled: state };
+                track.enabled = on;
+                return track;
             });
         }
         return this;

@@ -1,33 +1,33 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 
+import videoIcon from '../images/video-camera.svg';
+import microIcon from '../images/mic.svg';
+import hangUpIcon from '../images/phone-hang-up.svg';
+import shareIcon from '../images/share.svg';
+import MediaDevice from '../utils/MediaDevice';
+
 interface Props {
     status: string;
     localSrc?: any;
     peerSrc?: any;
-    config: ({
-        audio: Boolean;
-        video: Boolean;
-    });
-    mediaDevice?: any;
+    mediaDevice?: MediaDevice;
     endCall(state: boolean): void;
 };
 
-const getButtonClass = (icon, enabled) => classnames(`btn-action fa ${icon}`, { disable: !enabled });
+const getButtonClass = (icon, enabled) => classnames(`bg-none border-none cursor-pointer round-icon icon-${icon} mr-4`, { disable: !enabled });
 
 const CallWindow: React.FunctionComponent<Props> = ({
     peerSrc,
     localSrc,
-    config,
     mediaDevice,
     status,
     endCall,
 }) => {
     const peerVideo = useRef(null);
     const localVideo = useRef(null);
-    const [video, setVideo] = useState(config.video);
-    const [audio, setAudio] = useState(config.audio);
-    const [frontCam, setFrontCam] = useState(true);
+    const [video, setVideo] = useState(true);
+    const [audio, setAudio] = useState(true);
 
     useEffect(() => {
         if (peerVideo.current && peerSrc) peerVideo.current.srcObject = peerSrc;
@@ -48,15 +48,9 @@ const CallWindow: React.FunctionComponent<Props> = ({
     const toggleMediaDevice = (deviceType) => {
         if (deviceType === 'video') {
             setVideo(!video);
-            mediaDevice.toggle('Video');
         }
         if (deviceType === 'audio') {
             setAudio(!audio);
-            mediaDevice.toggle('Audio');
-        }
-        if (deviceType === 'cam') {
-            setFrontCam(!frontCam);
-            mediaDevice.toggle('Audio');
         }
     };
 
@@ -80,25 +74,26 @@ const CallWindow: React.FunctionComponent<Props> = ({
                 <button
                     key='btnVideo'
                     type='button'
-                    className={getButtonClass('fa-video-camera', video)}
+                    className={getButtonClass(video ? 'on' : 'off', video)}
                     onClick={() => toggleMediaDevice('video')}
-                />
+                >
+                    <img alt='video' src={videoIcon} />
+                </button>
                 <button
                     key='btnAudio'
                     type='button'
-                    className={getButtonClass('fa-microphone', audio)}
+                    className={getButtonClass(audio ? 'on' : 'off', audio)}
                     onClick={() => toggleMediaDevice('audio')}
-                />
+                >
+                    <img alt='mic' src={microIcon} />
+                </button>
                 <button
                     type='button'
-                    className='btn-action hangup fa fa-phone'
+                    className='bg-none border-none cursor-pointer round-icon icon-off mr-4'
                     onClick={() => endCall(true)}
-                />
-                <button
-                    type='button'
-                    className='btn-action toggle-cam fa fa-phone'
-                    onClick={() => toggleMediaDevice('cam')}
-                />
+                >
+                    <img alt='hang up' src={hangUpIcon} />
+                </button>
             </div>
         </div>
     );

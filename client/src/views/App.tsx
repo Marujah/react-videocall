@@ -82,7 +82,6 @@ const App: React.FunctionComponent<Props> = () => {
                     status={callWindow}
                     localSrc={localSrc}
                     peerSrc={peerSrc}
-                    config={this.config}
                     mediaDevice={this.pc.mediaDevice}
                     endCall={endCall}
                 />
