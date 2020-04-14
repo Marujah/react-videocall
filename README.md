@@ -1,9 +1,9 @@
 ## React-VideoCall
 Demo app: https://mm-video-chat.herokuapp.com/
 
-<img align="right" width="420" src="https://raw.githubusercontent.com/nguymin4/react-videocall/master/screenshots/1.png"  alt =" " style="border: solid 1px #d4d4d4" />
+<img align="right" width="420" src="https://github.com/Marujah/react-videocall/blob/master/video-call-screenshot.png"  alt =" " style="border: solid 1px #d4d4d4" />
   
-Video call to your friend without registering. 
+Ad-hoc Video call to your friend without registering. 
 Simply send your friend your auto-generated unique ID to make the call.  
 Everytime you open a new tab, the server gives you a totally different unique ID.
 
@@ -11,13 +11,13 @@ Everytime you open a new tab, the server gives you a totally different unique ID
 
 ```
 # Install dependencies
-yarn install
+npm install
 
 # Run server
-yarn watch:server
+npm watch:server
 
 # Run webpack-dev-server
-yarn watch:client
+npm watch:client
 ```
 
 
@@ -25,16 +25,16 @@ yarn watch:client
 
 **Heroku**
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/nguymin4/react-videocall/tree/production)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Marujah/react-videocall/react-videocall/tree/production)
 
 **Custom**
 ```
 # Install dependencies
-yarn install
+npm install
 
 # Build front-end assets
-yarn build
+npm build
 
 # Run server
-yarn start
+npm start
 ```
