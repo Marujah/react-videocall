@@ -21,12 +21,6 @@ npm watch:client
 ```
 
 
-### Deployment
-
-**Heroku**
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Marujah/react-videocall/react-videocall/tree/production)
-
 **Custom**
 ```
 # Install dependencies
